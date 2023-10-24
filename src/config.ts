@@ -4,7 +4,7 @@ export const SITE: Site = {
   website: "https://zegs.me/",
   author: "zegevlier",
   desc: "Blog",
-  title: "zegevliers's blog",
+  title: "zegevlier's blog",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: false,
   postPerPage: 20,
