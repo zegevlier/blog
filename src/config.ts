@@ -3,9 +3,8 @@ import type { Site, SocialObjects } from "./types";
 export const SITE: Site = {
   website: "https://zegs.me/",
   author: "zegevlier",
-  desc: "Blog",
+  desc: "zegevlier's personal blog",
   title: "zegevlier's blog",
-  ogImage: "astropaper-og.jpg",
   lightAndDarkMode: false,
   postPerPage: 20,
 };
