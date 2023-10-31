@@ -5,36 +5,29 @@ import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import sitemap from "@astrojs/sitemap";
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://zegs.me/", // replace this with your deployed domain
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-    react(),
-    sitemap(),
-  ],
+  site: "https://zegs.me/",
+  // replace this with your deployed domain
+  integrations: [tailwind({
+    applyBaseStyles: false
+  }), react(), sitemap(), mdx()],
   markdown: {
-    remarkPlugins: [
-      remarkToc,
-      [
-        remarkCollapse,
-        {
-          test: "Table of contents",
-        },
-      ],
-    ],
+    remarkPlugins: [remarkToc, [remarkCollapse, {
+      test: "Table of contents"
+    }]],
     shikiConfig: {
       theme: "one-dark-pro",
-      wrap: true,
+      wrap: true
     },
-    extendDefaultPlugins: true,
+    extendDefaultPlugins: true
   },
   vite: {
     optimizeDeps: {
-      exclude: ["@resvg/resvg-js"],
-    },
+      exclude: ["@resvg/resvg-js"]
+    }
   },
-  scopedStyleStrategy: "where",
+  scopedStyleStrategy: "where"
 });
