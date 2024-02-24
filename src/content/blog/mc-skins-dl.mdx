@@ -1,0 +1,24 @@
+---
+author: zegevlier
+pubDatetime: 2024-02-24T11:51:11Z
+title: "Downloading 15 million minecraft skins"
+postSlug: minecraft-skins-downloading
+featured: true
+draft: false
+tags: ["minecraft", "skins", "rust"]
+description: "I downloaded 15 million Minecraft skins, and you can have them!"
+---
+
+Recently, [mat](https://matdoes.dev) released a [blog post](https://matdoes.dev/minecraft-uuids) where he described how he was able to find an 51 million Minecraft: Java edition player UUIDs. Along with this blog post, he also made [the dataset](https://archive.org/details/minecraft-uuids-2024-02-22) available for download. I thought it would be fun to use the data he had collected to download all the skins of the 51 million players, so I did!
+
+The Mojang responses file included the URLs of the skins the players had at the time they were first seen by Mat's tool. As all Minecraft skins have a (mostly^1) permanent URL, downloading all of them was as easy as setting up ~1000 connections to Mojang and requesting all of them. At this rate they were being downloaded at a couple thousand per second, so it only took a few hours to complete.
+
+After the download was complete, I was left with ~14.3 million skins. This means that the vast majority of players had the same skin as someone else. Sadly, Mat's dataset did not include the skin's signatures. These would have been useful in some applications, as this information is required for the skin to be displayed in Minecraft. I was not able to find a good way to get these signatures, but if you have any suggestions please reach out!
+
+As I just wanted to initial version up and running as quickly as possible, I chose to use [sled](https://github.com/spacejam/sled) as the data store. This ended up working _fine_, but it wasn't great. The final file size was over 45gb, and it was, of course, only accessible via programs that used sled. To make it useful for people not using sled, I decided to transfer all the data over to SQLite. Simultaneously, I used [oxipng](https://github.com/shssoichiro/oxipng) on level 2 on all the skins to get their filesize down a bit more. Unfortunately, this process took longer than the downloading itself. At the peak I was only doing ~500 inserts/sec. The final SQLite database is about 25gb, meaning about ~1.74kb/skin instead of ~3.15kb/skin with sled, so I think this was worth it.
+
+If you have a use for it, you can download the database [at this URL](https://mcskins.zegs.me/skins14m.sqlite). I have not yet explored the data much, but if and when I do I'll post a link to any results on this blog post!
+
+A big thanks to mat for getting all the UUIDs and skin IDs, and a thanks to Mojang for not rate limiting their skins API 😜.
+
+^1 The URL becomes invalid if Mojang decides to ban the skin. In the whole dataset, there were only in the 10s of skins that were banned this way.
