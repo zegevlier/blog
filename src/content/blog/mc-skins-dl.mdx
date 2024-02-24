@@ -17,7 +17,7 @@ After the download was complete, I was left with ~14.3 million skins. This means
 
 As I just wanted to initial version up and running as quickly as possible, I chose to use [sled](https://github.com/spacejam/sled) as the data store. This ended up working _fine_, but it wasn't great. The final file size was over 45gb, and it was, of course, only accessible via programs that used sled. To make it useful for people not using sled, I decided to transfer all the data over to SQLite. Simultaneously, I used [oxipng](https://github.com/shssoichiro/oxipng) on level 2 on all the skins to get their filesize down a bit more. Unfortunately, this process took longer than the downloading itself. At the peak I was only doing ~500 inserts/sec. The final SQLite database is about 25gb, meaning about ~1.74kb/skin instead of ~3.15kb/skin with sled, so I think this was worth it.
 
-If you have a use for it, you can download the database [at this URL](https://mcskins.zegs.me/skins14m.sqlite). I have not yet explored the data much, but if and when I do I'll post a link to any results on this blog post!
+If you have a use for it, you can download the database [at this URL](https://mcskins.zegs.me/skins14m.sqlite). I have not yet explored the data much, but if and when I do I'll post a link to any results on this blog post! If you decide to do anything fun with it, do let me know!
 
 A big thanks to mat for getting all the UUIDs and skin IDs, and a thanks to Mojang for not rate limiting their skins API 😜.
 
